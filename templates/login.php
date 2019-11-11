@@ -335,7 +335,7 @@ color: #cccccc;
     <form>
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-      <input type="button" class="fadeIn fourth" value="Log In" onclick='href="../public/index.php"'>
+      <input type="button" class="fadeIn fourth" value="Log In">
     </form>
 
     <!-- Remind Passowrd -->
