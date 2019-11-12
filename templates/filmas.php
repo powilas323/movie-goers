@@ -6,5 +6,9 @@
 
 
 <br>
-<div><a href="../templates/filmoRedagavimas.php"></a></div>
+<div><a href="../templates/filmoRedagavimas.php">Redaguoti filmą</a></div>
 <button>Naikinti Filmą</button>
+
+
+<div>Komentarai:</div>
+<span>komentaras</span>

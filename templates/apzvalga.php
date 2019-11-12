@@ -12,3 +12,10 @@ The acting is wonderful, and directing is amazing. The film, while mostly horror
 
 In summary, this is a MUST SEE at the theater and one of the best films of the year. It is a fun ride that is very well done!</p>
 </html>
+
+<div><a href="../templates/apzvalguKurimas.php">Apzvalgų kūrimas</a></div>
+
+<div><a href="../templates/apzvalguRedagavimas.php">Apzvalgos redagavimas</a></div>
+
+<button>Naikinti Apžvalgą</button>
+
