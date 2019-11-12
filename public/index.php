@@ -18,5 +18,13 @@ require dirname(__DIR__).'/config/bootstrap.php';
         <div class="navbar-brand"><a href="../templates/naujienos.php">Naujienos</a></div>
         <div class="navbar-brand"><a href="../templates/login.php">Log in</a></div>
         <div class="navbar-brand"><a href="">Log out</a></div>
+
     </nav>
+    <nav class="navbar navbar-light bg-light">
+        <div class="navbar-brand"><a href="../templates/filmuKurimas.php">Filmu Kurimas</a></div>
+        <div class="navbar-brand"><a href="../templates/filmuKurimas.php">Filmu Kurimas</a></div>
+        <div class="navbar-brand"><a href="../templates/raportai.php">Filmu Kurimas</a></div>
+
+    </nav>
+
 </html>
