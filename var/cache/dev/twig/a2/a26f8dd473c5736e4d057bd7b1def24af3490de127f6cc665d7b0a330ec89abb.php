@@ -74,7 +74,7 @@ class __TwigTemplate_0be5d50655621b4fab749f9c98b4395ce2f7835e7e3a804ca9ae4509cdf
         // line 8
         echo "  <section class=\"jumbotron text-center\">
     <div class=\"container\">
-      <h1>Ka tu?</h1>
+      <h1>Tekstas</h1>
       <p class=\"lead text-muted\">TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS </p>
       <p>
         <a href=\"#\" class=\"btn btn-primary my-2\">Mygtukas</a>
@@ -114,7 +114,7 @@ Pagrindis puslapis
 {% block content %}
   <section class=\"jumbotron text-center\">
     <div class=\"container\">
-      <h1>Ka tu?</h1>
+      <h1>Tekstas</h1>
       <p class=\"lead text-muted\">TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS TEKSTAS </p>
       <p>
         <a href=\"#\" class=\"btn btn-primary my-2\">Mygtukas</a>

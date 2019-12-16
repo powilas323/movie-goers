@@ -22,18 +22,21 @@ return [
                     .'|delete(*:90)'
                     .'|create(*:103)'
                     .'|edit(*:115)'
-                    .'|report(*:129)'
+                    .'|r(?'
+                        .'|eport(*:132)'
+                        .'|ate(*:143)'
+                    .')'
                 .')'
                 .'|/movie(?'
-                    .'|(?:/([^/]++))?(*:161)'
+                    .'|(?:/([^/]++))?(*:176)'
                     .'|/(?'
-                        .'|c/([^/]++)(*:183)'
-                        .'|wishlist(*:199)'
+                        .'|c/([^/]++)(*:198)'
+                        .'|wishlist(*:214)'
                     .')'
                 .')'
                 .'|/review(?'
-                    .'|s(?:/([^/]++))?(*:234)'
-                    .'|/([^/]++)(*:251)'
+                    .'|s(?:/([^/]++))?(*:249)'
+                    .'|/([^/]++)(*:266)'
                 .')'
             .')/?$}sDu',
     ],
@@ -43,12 +46,13 @@ return [
         90 => [[['_route' => 'delete_comment', '_controller' => 'App\\Controller\\CommentsController::delete_comment'], [], ['POST' => 0], null, false, false, null]],
         103 => [[['_route' => 'create_comment', '_controller' => 'App\\Controller\\CommentsController::create_comment'], [], ['POST' => 0], null, false, false, null]],
         115 => [[['_route' => 'edit_comment', '_controller' => 'App\\Controller\\CommentsController::edit_comment'], [], ['PUT' => 0], null, false, false, null]],
-        129 => [[['_route' => 'report_comment', '_controller' => 'App\\Controller\\CommentsController::report_comment'], [], ['POST' => 0], null, false, false, null]],
-        161 => [[['_route' => 'movie_list', 'page' => 1, '_controller' => 'App\\Controller\\MovieController::movie_list'], ['page'], null, null, false, true, null]],
-        183 => [[['_route' => 'movie_show', '_controller' => 'App\\Controller\\MovieController::movie_show'], ['slug'], null, null, false, true, null]],
-        199 => [[['_route' => 'movie_wishlist', '_controller' => 'App\\Controller\\MovieController::movie_wishlist'], [], null, null, false, false, null]],
-        234 => [[['_route' => 'reviews_list', 'page' => 1, '_controller' => 'App\\Controller\\ReviewsController::reviews_list'], ['page'], null, null, false, true, null]],
-        251 => [
+        132 => [[['_route' => 'report_comment', '_controller' => 'App\\Controller\\CommentsController::report_comment'], [], ['POST' => 0], null, false, false, null]],
+        143 => [[['_route' => 'rate_comment', '_controller' => 'App\\Controller\\CommentsController::rate_comment'], [], ['POST' => 0], null, false, false, null]],
+        176 => [[['_route' => 'movie_list', 'page' => 1, '_controller' => 'App\\Controller\\MovieController::movie_list'], ['page'], null, null, false, true, null]],
+        198 => [[['_route' => 'movie_show', '_controller' => 'App\\Controller\\MovieController::movie_show'], ['slug'], null, null, false, true, null]],
+        214 => [[['_route' => 'movie_wishlist', '_controller' => 'App\\Controller\\MovieController::movie_wishlist'], [], null, null, false, false, null]],
+        249 => [[['_route' => 'reviews_list', 'page' => 1, '_controller' => 'App\\Controller\\ReviewsController::reviews_list'], ['page'], null, null, false, true, null]],
+        266 => [
             [['_route' => 'review', '_controller' => 'App\\Controller\\ReviewsController::review'], ['slug'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

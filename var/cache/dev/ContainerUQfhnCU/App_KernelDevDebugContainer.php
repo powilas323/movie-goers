@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerRu4H1a0;
+namespace ContainerUQfhnCU;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -658,7 +658,7 @@ class App_KernelDevDebugContainer extends Container
         ]));
         $c->addEventListener([0 => 'loadClassMetadata'], 'doctrine.orm.default_listeners.attach_entity_listeners');
 
-        return $this->services['doctrine.dbal.default_connection'] = (new \Doctrine\Bundle\DoctrineBundle\ConnectionFactory([]))->createConnection(['driver' => 'pdo_pgsql', 'host' => '185.80.130.165', 'port' => 5432, 'dbname' => 'moviegoers', 'user' => 'moviegoers', 'password' => 'moviegoers123', 'charset' => 'UTF8', 'driverOptions' => [], 'serverVersion' => '5.7', 'defaultTableOptions' => []], $a, $c, []);
+        return $this->services['doctrine.dbal.default_connection'] = (new \Doctrine\Bundle\DoctrineBundle\ConnectionFactory([]))->createConnection(['driver' => 'pdo_pgsql', 'host' => '185.80.130.165', 'port' => 5432, 'dbname' => 'moviegoers', 'user' => 'moviegoers', 'password' => 'moviegoers123', 'charset' => 'UTF8', 'driverOptions' => [], 'defaultTableOptions' => []], $a, $c, []);
     }
 
     /**
@@ -1225,29 +1225,33 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
-     * Gets the private '.service_locator.SVuJ4ep' shared service.
+     * Gets the private '.service_locator.b42Faz.' shared service.
      *
      * @return \Symfony\Component\DependencyInjection\ServiceLocator
      */
-    protected function get_ServiceLocator_SVuJ4epService()
+    protected function get_ServiceLocator_B42Faz_Service()
     {
-        return $this->privates['.service_locator.SVuJ4ep'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+        return $this->privates['.service_locator.b42Faz.'] = new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
             'App\\Controller\\CommentsController::create_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
             'App\\Controller\\CommentsController::delete_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
             'App\\Controller\\CommentsController::edit_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
+            'App\\Controller\\CommentsController::rate_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
             'App\\Controller\\CommentsController::report_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
             'App\\Controller\\CommentsController:create_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
             'App\\Controller\\CommentsController:delete_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
             'App\\Controller\\CommentsController:edit_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
+            'App\\Controller\\CommentsController:rate_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
             'App\\Controller\\CommentsController:report_comment' => ['privates', '.service_locator.RLVVpop', 'get_ServiceLocator_RLVVpopService', false],
         ], [
             'App\\Controller\\CommentsController::create_comment' => '?',
             'App\\Controller\\CommentsController::delete_comment' => '?',
             'App\\Controller\\CommentsController::edit_comment' => '?',
+            'App\\Controller\\CommentsController::rate_comment' => '?',
             'App\\Controller\\CommentsController::report_comment' => '?',
             'App\\Controller\\CommentsController:create_comment' => '?',
             'App\\Controller\\CommentsController:delete_comment' => '?',
             'App\\Controller\\CommentsController:edit_comment' => '?',
+            'App\\Controller\\CommentsController:rate_comment' => '?',
             'App\\Controller\\CommentsController:report_comment' => '?',
         ]);
     }
@@ -1893,7 +1897,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/TraceableValueResolver.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/NotTaggedControllerValueResolver.php';
 
-        return $this->privates['debug.argument_resolver.not_tagged_controller'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver(($this->privates['.service_locator.SVuJ4ep'] ?? $this->get_ServiceLocator_SVuJ4epService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
+        return $this->privates['debug.argument_resolver.not_tagged_controller'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver(($this->privates['.service_locator.b42Faz.'] ?? $this->get_ServiceLocator_B42Faz_Service())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
     }
 
     /**
@@ -1935,7 +1939,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/TraceableValueResolver.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentResolver/ServiceValueResolver.php';
 
-        return $this->privates['debug.argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(($this->privates['.service_locator.SVuJ4ep'] ?? $this->get_ServiceLocator_SVuJ4epService())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
+        return $this->privates['debug.argument_resolver.service'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\TraceableValueResolver(new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver(($this->privates['.service_locator.b42Faz.'] ?? $this->get_ServiceLocator_B42Faz_Service())), ($this->privates['debug.stopwatch'] ?? ($this->privates['debug.stopwatch'] = new \Symfony\Component\Stopwatch\Stopwatch(true))));
     }
 
     /**

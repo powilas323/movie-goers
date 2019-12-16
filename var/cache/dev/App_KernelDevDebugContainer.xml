@@ -2792,16 +2792,18 @@
         <argument key="user" type="service" id=".errored..service_locator.RLVVpop.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.SVuJ4ep" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.b42Faz." class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CommentsController::create_comment" type="service" id=".service_locator.RLVVpop"/>
         <argument key="App\Controller\CommentsController::delete_comment" type="service" id=".service_locator.RLVVpop"/>
         <argument key="App\Controller\CommentsController::edit_comment" type="service" id=".service_locator.RLVVpop"/>
+        <argument key="App\Controller\CommentsController::rate_comment" type="service" id=".service_locator.RLVVpop"/>
         <argument key="App\Controller\CommentsController::report_comment" type="service" id=".service_locator.RLVVpop"/>
         <argument key="App\Controller\CommentsController:create_comment" type="service" id=".service_locator.RLVVpop"/>
         <argument key="App\Controller\CommentsController:delete_comment" type="service" id=".service_locator.RLVVpop"/>
         <argument key="App\Controller\CommentsController:edit_comment" type="service" id=".service_locator.RLVVpop"/>
+        <argument key="App\Controller\CommentsController:rate_comment" type="service" id=".service_locator.RLVVpop"/>
         <argument key="App\Controller\CommentsController:report_comment" type="service" id=".service_locator.RLVVpop"/>
       </argument>
     </service>
@@ -2991,12 +2993,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.SVuJ4ep"/>
+      <argument type="service" id=".service_locator.b42Faz."/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.SVuJ4ep"/>
+      <argument type="service" id=".service_locator.b42Faz."/>
     </service>
     <service id=".service_locator.wnlveDj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -3278,7 +3280,7 @@
     <service id="doctrine.orm.default_query_cache" alias="doctrine.orm.cache.provider.cache.doctrine.orm.default.query" public="false"/>
     <service id="doctrine.orm.default_entity_manager.event_manager" alias="doctrine.dbal.default_connection.event_manager" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.SVuJ4ep"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.b42Faz."/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger" public="false"/>

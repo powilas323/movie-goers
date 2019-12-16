@@ -135,4 +135,13 @@ class CommentsController extends AbstractController
 
         return $this->render('index.html.twig');
     }
+
+    /**
+    * @Route("/comments/rate", name="rate_comment", methods={"POST"})
+    */
+    public function rate_comment(Request $request, UserInterface $user){
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Comment::class);
+        return $this->render('index.html.twig');
+    }
 }

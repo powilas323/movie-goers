@@ -9,6 +9,7 @@ return [
     'create_comment' => [[], ['_controller' => 'App\\Controller\\CommentsController::create_comment'], [], [['text', '/comments/create']], [], []],
     'edit_comment' => [[], ['_controller' => 'App\\Controller\\CommentsController::edit_comment'], [], [['text', '/comments/edit']], [], []],
     'report_comment' => [[], ['_controller' => 'App\\Controller\\CommentsController::report_comment'], [], [['text', '/comments/report']], [], []],
+    'rate_comment' => [[], ['_controller' => 'App\\Controller\\CommentsController::rate_comment'], [], [['text', '/comments/rate']], [], []],
     'index' => [[], ['_controller' => 'App\\Controller\\IndexController::index'], [], [['text', '/index']], [], []],
     'movie_list' => [['page'], ['page' => 1, '_controller' => 'App\\Controller\\MovieController::movie_list'], [], [['variable', '/', '[^/]++', 'page', true], ['text', '/movie']], [], []],
     'movie_show' => [['slug'], ['_controller' => 'App\\Controller\\MovieController::movie_show'], [], [['variable', '/', '[^/]++', 'slug', true], ['text', '/movie/c']], [], []],
