@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerV8IoMQk;
+namespace ContainerSudujiz;
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -41,6 +41,7 @@ class App_KernelDevDebugContainer extends Container
             'App\\Controller\\CommentsController' => 'getCommentsControllerService',
             'App\\Controller\\IndexController' => 'getIndexControllerService',
             'App\\Controller\\MovieController' => 'getMovieControllerService',
+            'App\\Controller\\ReviewsController' => 'getReviewsControllerService',
             'App\\Controller\\UserManagementController' => 'getUserManagementControllerService',
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController' => 'getRedirectControllerService',
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController' => 'getTemplateControllerService',
@@ -60,6 +61,11 @@ class App_KernelDevDebugContainer extends Container
             'request_stack' => 'getRequestStackService',
             'router' => 'getRouterService',
             'routing.loader' => 'getRouting_LoaderService',
+            'security.authentication_utils' => 'getSecurity_AuthenticationUtilsService',
+            'security.authorization_checker' => 'getSecurity_AuthorizationCheckerService',
+            'security.csrf.token_manager' => 'getSecurity_Csrf_TokenManagerService',
+            'security.password_encoder' => 'getSecurity_PasswordEncoderService',
+            'security.token_storage' => 'getSecurity_TokenStorageService',
             'services_resetter' => 'getServicesResetterService',
             'session' => 'getSessionService',
             'twig' => 'getTwigService',
@@ -106,6 +112,18 @@ class App_KernelDevDebugContainer extends Container
             include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Debug/FileLinkFormatter.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/routing/RequestContext.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/EventListener/RouterListener.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/Token/Storage/TokenStorageInterface.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/service-contracts/ServiceSubscriberInterface.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/Token/Storage/UsageTrackingTokenStorage.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/service-contracts/ResetInterface.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/Token/Storage/TokenStorage.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Logout/LogoutUrlGenerator.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/RememberMe/ResponseListener.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/EventListener/FirewallListener.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Debug/TraceableFirewallListener.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/FirewallMapInterface.php';
+            include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Security/FirewallMap.php';
             include_once \dirname(__DIR__, 4).'/vendor/psr/log/Psr/Log/LoggerInterface.php';
             include_once \dirname(__DIR__, 4).'/vendor/psr/log/Psr/Log/AbstractLogger.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Log/Logger.php';
@@ -116,7 +134,6 @@ class App_KernelDevDebugContainer extends Container
             include_once \dirname(__DIR__, 4).'/vendor/symfony/routing/Matcher/RequestMatcherInterface.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/routing/Router.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/CacheWarmer/WarmableInterface.php';
-            include_once \dirname(__DIR__, 4).'/vendor/symfony/service-contracts/ServiceSubscriberInterface.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/framework-bundle/Routing/Router.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/config/ConfigCacheFactoryInterface.php';
             include_once \dirname(__DIR__, 4).'/vendor/symfony/config/ResourceCheckerConfigCacheFactory.php';
@@ -190,6 +207,23 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
+     * Gets the public 'App\Controller\ReviewsController' shared autowired service.
+     *
+     * @return \App\Controller\ReviewsController
+     */
+    protected function getReviewsControllerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/framework-bundle/Controller/AbstractController.php';
+        include_once \dirname(__DIR__, 4).'/src/Controller/ReviewsController.php';
+
+        $this->services['App\\Controller\\ReviewsController'] = $instance = new \App\Controller\ReviewsController();
+
+        $instance->setContainer(($this->privates['.service_locator.csvSx8x'] ?? $this->get_ServiceLocator_CsvSx8xService())->withContext('App\\Controller\\ReviewsController', $this));
+
+        return $instance;
+    }
+
+    /**
      * Gets the public 'App\Controller\UserManagementController' shared autowired service.
      *
      * @return \App\Controller\UserManagementController
@@ -241,7 +275,6 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache/Adapter/AdapterInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache-contracts/CacheInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/psr/log/Psr/Log/LoggerAwareInterface.php';
-        include_once \dirname(__DIR__, 4).'/vendor/symfony/service-contracts/ResetInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache/ResettableInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/psr/log/Psr/Log/LoggerAwareTrait.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache/Traits/AbstractAdapterTrait.php';
@@ -299,7 +332,6 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache/Adapter/AdapterInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache-contracts/CacheInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/psr/log/Psr/Log/LoggerAwareInterface.php';
-        include_once \dirname(__DIR__, 4).'/vendor/symfony/service-contracts/ResetInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache/ResettableInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/psr/log/Psr/Log/LoggerAwareTrait.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/cache/Traits/AbstractAdapterTrait.php';
@@ -406,6 +438,7 @@ class App_KernelDevDebugContainer extends Container
             'maker.auto_command.make_user' => ['privates', 'maker.auto_command.make_user', 'getMaker_AutoCommand_MakeUserService', false],
             'maker.auto_command.make_validator' => ['privates', 'maker.auto_command.make_validator', 'getMaker_AutoCommand_MakeValidatorService', false],
             'maker.auto_command.make_voter' => ['privates', 'maker.auto_command.make_voter', 'getMaker_AutoCommand_MakeVoterService', false],
+            'security.command.user_password_encoder' => ['privates', 'security.command.user_password_encoder', 'getSecurity_Command_UserPasswordEncoderService', false],
             'twig.command.debug' => ['privates', 'twig.command.debug', 'getTwig_Command_DebugService', false],
             'twig.command.lint' => ['privates', 'twig.command.lint', 'getTwig_Command_LintService', false],
         ], [
@@ -450,9 +483,10 @@ class App_KernelDevDebugContainer extends Container
             'maker.auto_command.make_user' => 'Symfony\\Bundle\\MakerBundle\\Command\\MakerCommand',
             'maker.auto_command.make_validator' => 'Symfony\\Bundle\\MakerBundle\\Command\\MakerCommand',
             'maker.auto_command.make_voter' => 'Symfony\\Bundle\\MakerBundle\\Command\\MakerCommand',
+            'security.command.user_password_encoder' => 'Symfony\\Bundle\\SecurityBundle\\Command\\UserPasswordEncoderCommand',
             'twig.command.debug' => 'Symfony\\Bridge\\Twig\\Command\\DebugCommand',
             'twig.command.lint' => 'Symfony\\Bundle\\TwigBundle\\Command\\LintCommand',
-        ]), ['about' => 'console.command.about', 'assets:install' => 'console.command.assets_install', 'cache:clear' => 'console.command.cache_clear', 'cache:pool:clear' => 'console.command.cache_pool_clear', 'cache:pool:prune' => 'console.command.cache_pool_prune', 'cache:pool:delete' => 'console.command.cache_pool_delete', 'cache:pool:list' => 'console.command.cache_pool_list', 'cache:warmup' => 'console.command.cache_warmup', 'debug:config' => 'console.command.config_debug', 'config:dump-reference' => 'console.command.config_dump_reference', 'debug:container' => 'console.command.container_debug', 'lint:container' => 'console.command.container_lint', 'debug:autowiring' => 'console.command.debug_autowiring', 'debug:event-dispatcher' => 'console.command.event_dispatcher_debug', 'debug:router' => 'console.command.router_debug', 'router:match' => 'console.command.router_match', 'lint:yaml' => 'console.command.yaml_lint', 'secrets:set' => 'console.command.secrets_set', 'secrets:remove' => 'console.command.secrets_remove', 'secrets:generate-keys' => 'console.command.secrets_generate_key', 'secrets:list' => 'console.command.secrets_list', 'secrets:decrypt-to-local' => 'console.command.secrets_decrypt_to_local', 'secrets:encrypt-from-local' => 'console.command.secrets_encrypt_from_local', 'debug:twig' => 'twig.command.debug', 'lint:twig' => 'twig.command.lint', 'make:auth' => 'maker.auto_command.make_auth', 'make:command' => 'maker.auto_command.make_command', 'make:controller' => 'maker.auto_command.make_controller', 'make:crud' => 'maker.auto_command.make_crud', 'make:entity' => 'maker.auto_command.make_entity', 'make:fixtures' => 'maker.auto_command.make_fixtures', 'make:form' => 'maker.auto_command.make_form', 'make:functional-test' => 'maker.auto_command.make_functional_test', 'make:registration-form' => 'maker.auto_command.make_registration_form', 'make:serializer:encoder' => 'maker.auto_command.make_serializer_encoder', 'make:serializer:normalizer' => 'maker.auto_command.make_serializer_normalizer', 'make:subscriber' => 'maker.auto_command.make_subscriber', 'make:twig-extension' => 'maker.auto_command.make_twig_extension', 'make:unit-test' => 'maker.auto_command.make_unit_test', 'make:validator' => 'maker.auto_command.make_validator', 'make:voter' => 'maker.auto_command.make_voter', 'make:user' => 'maker.auto_command.make_user', 'make:migration' => 'maker.auto_command.make_migration']);
+        ]), ['about' => 'console.command.about', 'assets:install' => 'console.command.assets_install', 'cache:clear' => 'console.command.cache_clear', 'cache:pool:clear' => 'console.command.cache_pool_clear', 'cache:pool:prune' => 'console.command.cache_pool_prune', 'cache:pool:delete' => 'console.command.cache_pool_delete', 'cache:pool:list' => 'console.command.cache_pool_list', 'cache:warmup' => 'console.command.cache_warmup', 'debug:config' => 'console.command.config_debug', 'config:dump-reference' => 'console.command.config_dump_reference', 'debug:container' => 'console.command.container_debug', 'lint:container' => 'console.command.container_lint', 'debug:autowiring' => 'console.command.debug_autowiring', 'debug:event-dispatcher' => 'console.command.event_dispatcher_debug', 'debug:router' => 'console.command.router_debug', 'router:match' => 'console.command.router_match', 'lint:yaml' => 'console.command.yaml_lint', 'secrets:set' => 'console.command.secrets_set', 'secrets:remove' => 'console.command.secrets_remove', 'secrets:generate-keys' => 'console.command.secrets_generate_key', 'secrets:list' => 'console.command.secrets_list', 'secrets:decrypt-to-local' => 'console.command.secrets_decrypt_to_local', 'secrets:encrypt-from-local' => 'console.command.secrets_encrypt_from_local', 'debug:twig' => 'twig.command.debug', 'lint:twig' => 'twig.command.lint', 'security:encode-password' => 'security.command.user_password_encoder', 'make:auth' => 'maker.auto_command.make_auth', 'make:command' => 'maker.auto_command.make_command', 'make:controller' => 'maker.auto_command.make_controller', 'make:crud' => 'maker.auto_command.make_crud', 'make:entity' => 'maker.auto_command.make_entity', 'make:fixtures' => 'maker.auto_command.make_fixtures', 'make:form' => 'maker.auto_command.make_form', 'make:functional-test' => 'maker.auto_command.make_functional_test', 'make:registration-form' => 'maker.auto_command.make_registration_form', 'make:serializer:encoder' => 'maker.auto_command.make_serializer_encoder', 'make:serializer:normalizer' => 'maker.auto_command.make_serializer_normalizer', 'make:subscriber' => 'maker.auto_command.make_subscriber', 'make:twig-extension' => 'maker.auto_command.make_twig_extension', 'make:unit-test' => 'maker.auto_command.make_unit_test', 'make:validator' => 'maker.auto_command.make_validator', 'make:voter' => 'maker.auto_command.make_voter', 'make:user' => 'maker.auto_command.make_user', 'make:migration' => 'maker.auto_command.make_migration']);
     }
 
     /**
@@ -576,6 +610,9 @@ class App_KernelDevDebugContainer extends Container
         $instance->addListener('kernel.request', [0 => function () {
             return ($this->privates['debug.debug_handlers_listener'] ?? $this->getDebug_DebugHandlersListenerService());
         }, 1 => 'configure'], 2048);
+        $instance->addListener('console.command', [0 => function () {
+            return ($this->privates['debug.debug_handlers_listener'] ?? $this->getDebug_DebugHandlersListenerService());
+        }, 1 => 'configure'], 2048);
         $instance->addListener('kernel.request', [0 => function () {
             return ($this->privates['router_listener'] ?? $this->getRouterListenerService());
         }, 1 => 'onKernelRequest'], 32);
@@ -591,6 +628,21 @@ class App_KernelDevDebugContainer extends Container
         $instance->addListener('console.terminate', [0 => function () {
             return ($this->privates['maker.console_error_listener'] ?? ($this->privates['maker.console_error_listener'] = new \Symfony\Bundle\MakerBundle\Event\ConsoleErrorSubscriber()));
         }, 1 => 'onConsoleTerminate'], 0);
+        $instance->addListener('kernel.response', [0 => function () {
+            return ($this->privates['security.rememberme.response_listener'] ?? ($this->privates['security.rememberme.response_listener'] = new \Symfony\Component\Security\Http\RememberMe\ResponseListener()));
+        }, 1 => 'onKernelResponse'], 0);
+        $instance->addListener('debug.security.authorization.vote', [0 => function () {
+            return ($this->privates['debug.security.voter.vote_listener'] ?? $this->getDebug_Security_Voter_VoteListenerService());
+        }, 1 => 'onVoterVote'], 0);
+        $instance->addListener('kernel.request', [0 => function () {
+            return ($this->privates['debug.security.firewall'] ?? $this->getDebug_Security_FirewallService());
+        }, 1 => 'configureLogoutUrlGenerator'], 8);
+        $instance->addListener('kernel.request', [0 => function () {
+            return ($this->privates['debug.security.firewall'] ?? $this->getDebug_Security_FirewallService());
+        }, 1 => 'onKernelRequest'], 8);
+        $instance->addListener('kernel.finish_request', [0 => function () {
+            return ($this->privates['debug.security.firewall'] ?? $this->getDebug_Security_FirewallService());
+        }, 1 => 'onKernelFinishRequest'], 0);
 
         return $instance;
     }
@@ -618,10 +670,11 @@ class App_KernelDevDebugContainer extends Container
             yield 0 => ($this->privates['argument_resolver.request_attribute'] ?? ($this->privates['argument_resolver.request_attribute'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestAttributeValueResolver()));
             yield 1 => ($this->privates['argument_resolver.request'] ?? ($this->privates['argument_resolver.request'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver()));
             yield 2 => ($this->privates['argument_resolver.session'] ?? ($this->privates['argument_resolver.session'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver()));
-            yield 3 => ($this->privates['argument_resolver.service'] ?? $this->getArgumentResolver_ServiceService());
-            yield 4 => ($this->privates['argument_resolver.default'] ?? ($this->privates['argument_resolver.default'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver()));
-            yield 5 => ($this->privates['argument_resolver.variadic'] ?? ($this->privates['argument_resolver.variadic'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver()));
-        }, 6)));
+            yield 3 => ($this->privates['security.user_value_resolver'] ?? $this->getSecurity_UserValueResolverService());
+            yield 4 => ($this->privates['argument_resolver.service'] ?? $this->getArgumentResolver_ServiceService());
+            yield 5 => ($this->privates['argument_resolver.default'] ?? ($this->privates['argument_resolver.default'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver()));
+            yield 6 => ($this->privates['argument_resolver.variadic'] ?? ($this->privates['argument_resolver.variadic'] = new \Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver()));
+        }, 7)));
     }
 
     /**
@@ -717,13 +770,84 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
+     * Gets the public 'security.authentication_utils' shared service.
+     *
+     * @return \Symfony\Component\Security\Http\Authentication\AuthenticationUtils
+     */
+    protected function getSecurity_AuthenticationUtilsService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Authentication/AuthenticationUtils.php';
+
+        return $this->services['security.authentication_utils'] = new \Symfony\Component\Security\Http\Authentication\AuthenticationUtils(($this->services['request_stack'] ?? ($this->services['request_stack'] = new \Symfony\Component\HttpFoundation\RequestStack())));
+    }
+
+    /**
+     * Gets the public 'security.authorization_checker' shared service.
+     *
+     * @return \Symfony\Component\Security\Core\Authorization\AuthorizationChecker
+     */
+    protected function getSecurity_AuthorizationCheckerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/AuthorizationCheckerInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/AuthorizationChecker.php';
+
+        return $this->services['security.authorization_checker'] = new \Symfony\Component\Security\Core\Authorization\AuthorizationChecker(($this->services['security.token_storage'] ?? $this->getSecurity_TokenStorageService()), ($this->privates['security.authentication.manager'] ?? $this->getSecurity_Authentication_ManagerService()), ($this->privates['debug.security.access.decision_manager'] ?? $this->getDebug_Security_Access_DecisionManagerService()), false);
+    }
+
+    /**
+     * Gets the public 'security.csrf.token_manager' shared service.
+     *
+     * @return \Symfony\Component\Security\Csrf\CsrfTokenManager
+     */
+    protected function getSecurity_Csrf_TokenManagerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-csrf/CsrfTokenManagerInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-csrf/CsrfTokenManager.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-csrf/TokenGenerator/TokenGeneratorInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-csrf/TokenGenerator/UriSafeTokenGenerator.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-csrf/TokenStorage/TokenStorageInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-csrf/TokenStorage/ClearableTokenStorageInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-csrf/TokenStorage/SessionTokenStorage.php';
+
+        return $this->services['security.csrf.token_manager'] = new \Symfony\Component\Security\Csrf\CsrfTokenManager(new \Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator(), new \Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage(($this->services['session'] ?? $this->getSessionService())), ($this->services['request_stack'] ?? ($this->services['request_stack'] = new \Symfony\Component\HttpFoundation\RequestStack())));
+    }
+
+    /**
+     * Gets the public 'security.password_encoder' shared service.
+     *
+     * @return \Symfony\Component\Security\Core\Encoder\UserPasswordEncoder
+     */
+    protected function getSecurity_PasswordEncoderService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Encoder/UserPasswordEncoderInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Encoder/UserPasswordEncoder.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Encoder/EncoderFactoryInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Encoder/EncoderFactory.php';
+
+        return $this->services['security.password_encoder'] = new \Symfony\Component\Security\Core\Encoder\UserPasswordEncoder(($this->privates['security.encoder_factory.generic'] ?? ($this->privates['security.encoder_factory.generic'] = new \Symfony\Component\Security\Core\Encoder\EncoderFactory([]))));
+    }
+
+    /**
+     * Gets the public 'security.token_storage' shared service.
+     *
+     * @return \Symfony\Component\Security\Core\Authentication\Token\Storage\UsageTrackingTokenStorage
+     */
+    protected function getSecurity_TokenStorageService()
+    {
+        return $this->services['security.token_storage'] = new \Symfony\Component\Security\Core\Authentication\Token\Storage\UsageTrackingTokenStorage(($this->privates['security.untracked_token_storage'] ?? ($this->privates['security.untracked_token_storage'] = new \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage())), new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'session' => ['services', 'session', 'getSessionService', false],
+        ], [
+            'session' => '?',
+        ]));
+    }
+
+    /**
      * Gets the public 'services_resetter' shared service.
      *
      * @return \Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter
      */
     protected function getServicesResetterService()
     {
-        include_once \dirname(__DIR__, 4).'/vendor/symfony/service-contracts/ResetInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/DependencyInjection/ServicesResetter.php';
 
         return $this->services['services_resetter'] = new \Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter(new RewindableGenerator(function () {
@@ -748,9 +872,15 @@ class App_KernelDevDebugContainer extends Container
             if (false) {
                 yield 'cache.messenger.restart_workers_signal' => null;
             }
+            if (isset($this->services['security.token_storage'])) {
+                yield 'security.token_storage' => ($this->services['security.token_storage'] ?? null);
+            }
+            if (false) {
+                yield 'cache.security_expression_language' => null;
+            }
         }, function () {
-            return 0 + (int) (isset($this->services['cache.app'])) + (int) (isset($this->services['cache.system'])) + (int) (false) + (int) (false) + (int) (false) + (int) (false) + (int) (false);
-        }), ['cache.app' => [0 => 'reset'], 'cache.system' => [0 => 'reset'], 'cache.validator' => [0 => 'reset'], 'cache.serializer' => [0 => 'reset'], 'cache.annotations' => [0 => 'reset'], 'cache.property_info' => [0 => 'reset'], 'cache.messenger.restart_workers_signal' => [0 => 'reset']]);
+            return 0 + (int) (isset($this->services['cache.app'])) + (int) (isset($this->services['cache.system'])) + (int) (false) + (int) (false) + (int) (false) + (int) (false) + (int) (false) + (int) (isset($this->services['security.token_storage'])) + (int) (false);
+        }), ['cache.app' => [0 => 'reset'], 'cache.system' => [0 => 'reset'], 'cache.validator' => [0 => 'reset'], 'cache.serializer' => [0 => 'reset'], 'cache.annotations' => [0 => 'reset'], 'cache.property_info' => [0 => 'reset'], 'cache.messenger.restart_workers_signal' => [0 => 'reset'], 'security.token_storage' => [0 => 'disableUsageTracking', 1 => 'setToken'], 'cache.security_expression_language' => [0 => 'reset']]);
     }
 
     /**
@@ -783,6 +913,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/twig/twig/src/Loader/FilesystemLoader.php';
         include_once \dirname(__DIR__, 4).'/vendor/twig/twig/src/Extension/ExtensionInterface.php';
         include_once \dirname(__DIR__, 4).'/vendor/twig/twig/src/Extension/AbstractExtension.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/Extension/CsrfExtension.php';
         include_once \dirname(__DIR__, 4).'/vendor/twig/twig/src/Extension/ProfilerExtension.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/Extension/ProfilerExtension.php';
         include_once \dirname(__DIR__, 4).'/vendor/twig/twig/src/Profiler/Profile.php';
@@ -802,6 +933,8 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/Extension/HttpKernelExtension.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/Extension/HttpFoundationExtension.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/http-foundation/UrlHelper.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/Extension/LogoutUrlExtension.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/Extension/SecurityExtension.php';
         include_once \dirname(__DIR__, 4).'/vendor/twig/twig/src/Extension/DebugExtension.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/AppVariable.php';
         include_once \dirname(__DIR__, 4).'/vendor/twig/twig/src/RuntimeLoader/RuntimeLoaderInterface.php';
@@ -812,6 +945,8 @@ class App_KernelDevDebugContainer extends Container
         $a = new \Twig\Loader\FilesystemLoader([], \dirname(__DIR__, 4));
         $a->addPath((\dirname(__DIR__, 4).'/vendor/symfony/framework-bundle/Resources/views'), 'Framework');
         $a->addPath((\dirname(__DIR__, 4).'/vendor/symfony/framework-bundle/Resources/views'), '!Framework');
+        $a->addPath((\dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Resources/views'), 'Security');
+        $a->addPath((\dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Resources/views'), '!Security');
         $a->addPath((\dirname(__DIR__, 4).'/templates'));
 
         $this->services['twig'] = $instance = new \Twig\Environment($a, ['autoescape' => 'name', 'cache' => ($this->targetDir.''.'/twig'), 'charset' => 'UTF-8', 'debug' => true, 'strict_variables' => true]);
@@ -820,11 +955,15 @@ class App_KernelDevDebugContainer extends Container
         $c = new \Symfony\Bridge\Twig\AppVariable();
         $c->setEnvironment('dev');
         $c->setDebug(true);
+        if ($this->has('security.token_storage')) {
+            $c->setTokenStorage(($this->services['security.token_storage'] ?? $this->getSecurity_TokenStorageService()));
+        }
         if ($this->has('request_stack')) {
             $c->setRequestStack($b);
         }
         $d = new \Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor();
 
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CsrfExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\ProfilerExtension(new \Twig\Profiler\Profile(), NULL));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension(NULL));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\AssetExtension(new \Symfony\Component\Asset\Packages(new \Symfony\Component\Asset\PathPackage('', new \Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy(), new \Symfony\Component\Asset\Context\RequestStackContext($b, '', false)), [])));
@@ -833,11 +972,15 @@ class App_KernelDevDebugContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpFoundationExtension(new \Symfony\Component\HttpFoundation\UrlHelper($b, ($this->privates['router.request_context'] ?? $this->getRouter_RequestContextService()))));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\LogoutUrlExtension(($this->privates['security.logout_url_generator'] ?? $this->getSecurity_LogoutUrlGeneratorService())));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension(($this->services['security.authorization_checker'] ?? $this->getSecurity_AuthorizationCheckerService())));
         $instance->addExtension(new \Twig\Extension\DebugExtension());
         $instance->addGlobal('app', $c);
         $instance->addRuntimeLoader(new \Twig\RuntimeLoader\ContainerRuntimeLoader(new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'Symfony\\Bridge\\Twig\\Extension\\CsrfRuntime' => ['privates', 'twig.runtime.security_csrf', 'getTwig_Runtime_SecurityCsrfService', false],
             'Symfony\\Bridge\\Twig\\Extension\\HttpKernelRuntime' => ['privates', 'twig.runtime.httpkernel', 'getTwig_Runtime_HttpkernelService', false],
         ], [
+            'Symfony\\Bridge\\Twig\\Extension\\CsrfRuntime' => '?',
             'Symfony\\Bridge\\Twig\\Extension\\HttpKernelRuntime' => '?',
         ])));
         $instance->registerUndefinedFilterCallback([0 => $d, 1 => 'suggestFilter']);
@@ -859,6 +1002,9 @@ class App_KernelDevDebugContainer extends Container
             'parameter_bag' => ['privates', 'parameter_bag', 'getParameterBagService', false],
             'request_stack' => ['services', 'request_stack', 'getRequestStackService', false],
             'router' => ['services', 'router', 'getRouterService', false],
+            'security.authorization_checker' => ['services', 'security.authorization_checker', 'getSecurity_AuthorizationCheckerService', false],
+            'security.csrf.token_manager' => ['services', 'security.csrf.token_manager', 'getSecurity_Csrf_TokenManagerService', false],
+            'security.token_storage' => ['services', 'security.token_storage', 'getSecurity_TokenStorageService', false],
             'session' => ['services', 'session', 'getSessionService', false],
             'twig' => ['services', 'twig', 'getTwigService', false],
         ], [
@@ -866,6 +1012,9 @@ class App_KernelDevDebugContainer extends Container
             'parameter_bag' => '?',
             'request_stack' => '?',
             'router' => '?',
+            'security.authorization_checker' => '?',
+            'security.csrf.token_manager' => '?',
+            'security.token_storage' => '?',
             'session' => '?',
             'twig' => '?',
         ]);
@@ -981,7 +1130,7 @@ class App_KernelDevDebugContainer extends Container
         include_once \dirname(__DIR__, 4).'/vendor/symfony/console/Command/Command.php';
         include_once \dirname(__DIR__, 4).'/vendor/symfony/framework-bundle/Command/CachePoolListCommand.php';
 
-        $this->privates['console.command.cache_pool_list'] = $instance = new \Symfony\Bundle\FrameworkBundle\Command\CachePoolListCommand([0 => 'cache.app', 1 => 'cache.system', 2 => 'cache.validator', 3 => 'cache.serializer', 4 => 'cache.annotations', 5 => 'cache.property_info', 6 => 'cache.messenger.restart_workers_signal']);
+        $this->privates['console.command.cache_pool_list'] = $instance = new \Symfony\Bundle\FrameworkBundle\Command\CachePoolListCommand([0 => 'cache.app', 1 => 'cache.system', 2 => 'cache.validator', 3 => 'cache.serializer', 4 => 'cache.annotations', 5 => 'cache.property_info', 6 => 'cache.messenger.restart_workers_signal', 7 => 'cache.security_expression_language']);
 
         $instance->setName('cache:pool:list');
 
@@ -1344,6 +1493,84 @@ class App_KernelDevDebugContainer extends Container
     protected function getDebug_DebugHandlersListenerService()
     {
         return $this->privates['debug.debug_handlers_listener'] = new \Symfony\Component\HttpKernel\EventListener\DebugHandlersListener(NULL, ($this->privates['logger'] ?? ($this->privates['logger'] = new \Symfony\Component\HttpKernel\Log\Logger())), NULL, -1, true, ($this->privates['debug.file_link_formatter'] ?? ($this->privates['debug.file_link_formatter'] = new \Symfony\Component\HttpKernel\Debug\FileLinkFormatter(NULL))), true);
+    }
+
+    /**
+     * Gets the private 'debug.security.access.decision_manager' shared service.
+     *
+     * @return \Symfony\Component\Security\Core\Authorization\TraceableAccessDecisionManager
+     */
+    protected function getDebug_Security_Access_DecisionManagerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/AccessDecisionManagerInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/TraceableAccessDecisionManager.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/AccessDecisionManager.php';
+
+        return $this->privates['debug.security.access.decision_manager'] = new \Symfony\Component\Security\Core\Authorization\TraceableAccessDecisionManager(new \Symfony\Component\Security\Core\Authorization\AccessDecisionManager(new RewindableGenerator(function () {
+            yield 0 => ($this->privates['debug.security.voter.security.access.authenticated_voter'] ?? $this->getDebug_Security_Voter_Security_Access_AuthenticatedVoterService());
+            yield 1 => ($this->privates['debug.security.voter.security.access.simple_role_voter'] ?? $this->getDebug_Security_Voter_Security_Access_SimpleRoleVoterService());
+        }, 2), 'affirmative', false, true));
+    }
+
+    /**
+     * Gets the private 'debug.security.firewall' shared service.
+     *
+     * @return \Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener
+     */
+    protected function getDebug_Security_FirewallService()
+    {
+        return $this->privates['debug.security.firewall'] = new \Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener(new \Symfony\Bundle\SecurityBundle\Security\FirewallMap(new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'security.firewall.map.context.dev' => ['privates', 'security.firewall.map.context.dev', 'getSecurity_Firewall_Map_Context_DevService', false],
+            'security.firewall.map.context.main' => ['privates', 'security.firewall.map.context.main', 'getSecurity_Firewall_Map_Context_MainService', false],
+        ], [
+            'security.firewall.map.context.dev' => '?',
+            'security.firewall.map.context.main' => '?',
+        ]), new RewindableGenerator(function () {
+            yield 'security.firewall.map.context.dev' => ($this->privates['.security.request_matcher.Iy.T22O'] ?? ($this->privates['.security.request_matcher.Iy.T22O'] = new \Symfony\Component\HttpFoundation\RequestMatcher('^/(_(profiler|wdt)|css|images|js)/')));
+            yield 'security.firewall.map.context.main' => NULL;
+        }, 2)), ($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()), ($this->privates['security.logout_url_generator'] ?? $this->getSecurity_LogoutUrlGeneratorService()));
+    }
+
+    /**
+     * Gets the private 'debug.security.voter.security.access.authenticated_voter' shared service.
+     *
+     * @return \Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter
+     */
+    protected function getDebug_Security_Voter_Security_Access_AuthenticatedVoterService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/Voter/VoterInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/Voter/TraceableVoter.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/Voter/AuthenticatedVoter.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationTrustResolverInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationTrustResolver.php';
+
+        return $this->privates['debug.security.voter.security.access.authenticated_voter'] = new \Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter(new \Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter(($this->privates['security.authentication.trust_resolver'] ?? ($this->privates['security.authentication.trust_resolver'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver()))), ($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()));
+    }
+
+    /**
+     * Gets the private 'debug.security.voter.security.access.simple_role_voter' shared service.
+     *
+     * @return \Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter
+     */
+    protected function getDebug_Security_Voter_Security_Access_SimpleRoleVoterService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/Voter/VoterInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/Voter/TraceableVoter.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authorization/Voter/RoleVoter.php';
+
+        return $this->privates['debug.security.voter.security.access.simple_role_voter'] = new \Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter(new \Symfony\Component\Security\Core\Authorization\Voter\RoleVoter(), ($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()));
+    }
+
+    /**
+     * Gets the private 'debug.security.voter.vote_listener' shared service.
+     *
+     * @return \Symfony\Bundle\SecurityBundle\EventListener\VoteListener
+     */
+    protected function getDebug_Security_Voter_VoteListenerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/EventListener/VoteListener.php';
+
+        return $this->privates['debug.security.voter.vote_listener'] = new \Symfony\Bundle\SecurityBundle\EventListener\VoteListener(($this->privates['debug.security.access.decision_manager'] ?? $this->getDebug_Security_Access_DecisionManagerService()));
     }
 
     /**
@@ -1853,6 +2080,170 @@ class App_KernelDevDebugContainer extends Container
     }
 
     /**
+     * Gets the private 'security.access_listener' shared service.
+     *
+     * @return \Symfony\Component\Security\Http\Firewall\AccessListener
+     */
+    protected function getSecurity_AccessListenerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/AbstractListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/AccessListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/AccessMapInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/AccessMap.php';
+
+        return $this->privates['security.access_listener'] = new \Symfony\Component\Security\Http\Firewall\AccessListener(($this->services['security.token_storage'] ?? $this->getSecurity_TokenStorageService()), ($this->privates['debug.security.access.decision_manager'] ?? $this->getDebug_Security_Access_DecisionManagerService()), ($this->privates['security.access_map'] ?? ($this->privates['security.access_map'] = new \Symfony\Component\Security\Http\AccessMap())), ($this->privates['security.authentication.manager'] ?? $this->getSecurity_Authentication_ManagerService()));
+    }
+
+    /**
+     * Gets the private 'security.authentication.listener.anonymous.main' shared service.
+     *
+     * @return \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener
+     */
+    protected function getSecurity_Authentication_Listener_Anonymous_MainService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/AbstractListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/AnonymousAuthenticationListener.php';
+
+        return $this->privates['security.authentication.listener.anonymous.main'] = new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener(($this->privates['security.untracked_token_storage'] ?? ($this->privates['security.untracked_token_storage'] = new \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage())), $this->getParameter('container.build_hash'), ($this->privates['logger'] ?? ($this->privates['logger'] = new \Symfony\Component\HttpKernel\Log\Logger())), ($this->privates['security.authentication.manager'] ?? $this->getSecurity_Authentication_ManagerService()));
+    }
+
+    /**
+     * Gets the private 'security.authentication.manager' shared service.
+     *
+     * @return \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager
+     */
+    protected function getSecurity_Authentication_ManagerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationManagerInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationProviderManager.php';
+
+        $this->privates['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(new RewindableGenerator(function () {
+            yield 0 => ($this->privates['security.authentication.provider.anonymous.main'] ?? ($this->privates['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider($this->getParameter('container.build_hash'))));
+        }, 1), true);
+
+        $instance->setEventDispatcher(($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'security.channel_listener' shared service.
+     *
+     * @return \Symfony\Component\Security\Http\Firewall\ChannelListener
+     */
+    protected function getSecurity_ChannelListenerService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/AbstractListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/ChannelListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/EntryPoint/AuthenticationEntryPointInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/EntryPoint/RetryAuthenticationEntryPoint.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/AccessMapInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/AccessMap.php';
+
+        return $this->privates['security.channel_listener'] = new \Symfony\Component\Security\Http\Firewall\ChannelListener(($this->privates['security.access_map'] ?? ($this->privates['security.access_map'] = new \Symfony\Component\Security\Http\AccessMap())), new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), ($this->privates['logger'] ?? ($this->privates['logger'] = new \Symfony\Component\HttpKernel\Log\Logger())));
+    }
+
+    /**
+     * Gets the private 'security.command.user_password_encoder' shared service.
+     *
+     * @return \Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand
+     */
+    protected function getSecurity_Command_UserPasswordEncoderService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/console/Command/Command.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Command/UserPasswordEncoderCommand.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Encoder/EncoderFactoryInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Encoder/EncoderFactory.php';
+
+        $this->privates['security.command.user_password_encoder'] = $instance = new \Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand(($this->privates['security.encoder_factory.generic'] ?? ($this->privates['security.encoder_factory.generic'] = new \Symfony\Component\Security\Core\Encoder\EncoderFactory([]))), []);
+
+        $instance->setName('security:encode-password');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'security.context_listener.0' shared service.
+     *
+     * @return \Symfony\Component\Security\Http\Firewall\ContextListener
+     */
+    protected function getSecurity_ContextListener_0Service()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/AbstractListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/ContextListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationTrustResolverInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationTrustResolver.php';
+
+        return $this->privates['security.context_listener.0'] = new \Symfony\Component\Security\Http\Firewall\ContextListener(($this->privates['security.untracked_token_storage'] ?? ($this->privates['security.untracked_token_storage'] = new \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage())), new RewindableGenerator(function () {
+            yield 0 => ($this->privates['security.user.provider.concrete.in_memory'] ?? ($this->privates['security.user.provider.concrete.in_memory'] = new \Symfony\Component\Security\Core\User\InMemoryUserProvider([])));
+        }, 1), 'main', ($this->privates['logger'] ?? ($this->privates['logger'] = new \Symfony\Component\HttpKernel\Log\Logger())), ($this->services['event_dispatcher'] ?? $this->getEventDispatcherService()), ($this->privates['security.authentication.trust_resolver'] ?? ($this->privates['security.authentication.trust_resolver'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver())), [0 => ($this->services['security.token_storage'] ?? $this->getSecurity_TokenStorageService()), 1 => 'enableUsageTracking']);
+    }
+
+    /**
+     * Gets the private 'security.firewall.map.context.dev' shared service.
+     *
+     * @return \Symfony\Bundle\SecurityBundle\Security\FirewallContext
+     */
+    protected function getSecurity_Firewall_Map_Context_DevService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Security/FirewallContext.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Security/FirewallConfig.php';
+
+        return $this->privates['security.firewall.map.context.dev'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(new RewindableGenerator(function () {
+            return new \EmptyIterator();
+        }, 0), NULL, NULL, new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('dev', 'security.user_checker', '.security.request_matcher.Iy.T22O', false, false, '', '', '', '', '', [], NULL));
+    }
+
+    /**
+     * Gets the private 'security.firewall.map.context.main' shared service.
+     *
+     * @return \Symfony\Bundle\SecurityBundle\Security\LazyFirewallContext
+     */
+    protected function getSecurity_Firewall_Map_Context_MainService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Security/FirewallContext.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Security/LazyFirewallContext.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Util/TargetPathTrait.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Firewall/ExceptionListener.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/HttpUtils.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-bundle/Security/FirewallConfig.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationTrustResolverInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-core/Authentication/AuthenticationTrustResolver.php';
+
+        $a = ($this->services['router'] ?? $this->getRouterService());
+
+        return $this->privates['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\LazyFirewallContext(new RewindableGenerator(function () {
+            yield 0 => ($this->privates['security.channel_listener'] ?? $this->getSecurity_ChannelListenerService());
+            yield 1 => ($this->privates['security.context_listener.0'] ?? $this->getSecurity_ContextListener_0Service());
+            yield 2 => ($this->privates['security.authentication.listener.anonymous.main'] ?? $this->getSecurity_Authentication_Listener_Anonymous_MainService());
+            yield 3 => ($this->privates['security.access_listener'] ?? $this->getSecurity_AccessListenerService());
+        }, 4), new \Symfony\Component\Security\Http\Firewall\ExceptionListener(($this->services['security.token_storage'] ?? $this->getSecurity_TokenStorageService()), ($this->privates['security.authentication.trust_resolver'] ?? ($this->privates['security.authentication.trust_resolver'] = new \Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver())), new \Symfony\Component\Security\Http\HttpUtils($a, $a, '{^https?://%s$}i', '{^https://%s$}i'), 'main', NULL, NULL, NULL, ($this->privates['logger'] ?? ($this->privates['logger'] = new \Symfony\Component\HttpKernel\Log\Logger())), false), NULL, new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', NULL, true, false, 'security.user.provider.concrete.in_memory', 'main', NULL, NULL, NULL, [0 => 'anonymous'], NULL), ($this->privates['security.untracked_token_storage'] ?? ($this->privates['security.untracked_token_storage'] = new \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage())));
+    }
+
+    /**
+     * Gets the private 'security.logout_url_generator' shared service.
+     *
+     * @return \Symfony\Component\Security\Http\Logout\LogoutUrlGenerator
+     */
+    protected function getSecurity_LogoutUrlGeneratorService()
+    {
+        return $this->privates['security.logout_url_generator'] = new \Symfony\Component\Security\Http\Logout\LogoutUrlGenerator(($this->services['request_stack'] ?? ($this->services['request_stack'] = new \Symfony\Component\HttpFoundation\RequestStack())), ($this->services['router'] ?? $this->getRouterService()), ($this->services['security.token_storage'] ?? $this->getSecurity_TokenStorageService()));
+    }
+
+    /**
+     * Gets the private 'security.user_value_resolver' shared service.
+     *
+     * @return \Symfony\Component\Security\Http\Controller\UserValueResolver
+     */
+    protected function getSecurity_UserValueResolverService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/http-kernel/Controller/ArgumentValueResolverInterface.php';
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/security-http/Controller/UserValueResolver.php';
+
+        return $this->privates['security.user_value_resolver'] = new \Symfony\Component\Security\Http\Controller\UserValueResolver(($this->services['security.token_storage'] ?? $this->getSecurity_TokenStorageService()));
+    }
+
+    /**
      * Gets the private 'session.storage.native' shared service.
      *
      * @return \Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage
@@ -1938,6 +2329,18 @@ class App_KernelDevDebugContainer extends Container
         ], [
             'inline' => '?',
         ]), ($this->services['request_stack'] ?? ($this->services['request_stack'] = new \Symfony\Component\HttpFoundation\RequestStack())), true));
+    }
+
+    /**
+     * Gets the private 'twig.runtime.security_csrf' shared service.
+     *
+     * @return \Symfony\Bridge\Twig\Extension\CsrfRuntime
+     */
+    protected function getTwig_Runtime_SecurityCsrfService()
+    {
+        include_once \dirname(__DIR__, 4).'/vendor/symfony/twig-bridge/Extension/CsrfRuntime.php';
+
+        return $this->privates['twig.runtime.security_csrf'] = new \Symfony\Bridge\Twig\Extension\CsrfRuntime(($this->services['security.csrf.token_manager'] ?? $this->getSecurity_Csrf_TokenManagerService()));
     }
 
     /**
@@ -2038,6 +2441,7 @@ class App_KernelDevDebugContainer extends Container
                 'MakerBundle' => 'Symfony\\Bundle\\MakerBundle\\MakerBundle',
                 'TwigBundle' => 'Symfony\\Bundle\\TwigBundle\\TwigBundle',
                 'TwigExtraBundle' => 'Twig\\Extra\\TwigExtraBundle\\TwigExtraBundle',
+                'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
             ],
             'kernel.bundles_metadata' => [
                 'FrameworkBundle' => [
@@ -2055,6 +2459,10 @@ class App_KernelDevDebugContainer extends Container
                 'TwigExtraBundle' => [
                     'path' => (\dirname(__DIR__, 4).'/vendor/twig/extra-bundle/src'),
                     'namespace' => 'Twig\\Extra\\TwigExtraBundle',
+                ],
+                'SecurityBundle' => [
+                    'path' => (\dirname(__DIR__, 4).'/vendor/symfony/security-bundle'),
+                    'namespace' => 'Symfony\\Bundle\\SecurityBundle',
                 ],
             ],
             'kernel.charset' => 'UTF-8',
@@ -2095,6 +2503,14 @@ class App_KernelDevDebugContainer extends Container
                 0 => 'form_div_layout.html.twig',
             ],
             'twig.default_path' => (\dirname(__DIR__, 4).'/templates'),
+            'security.role_hierarchy.roles' => [
+
+            ],
+            'security.access.denied_url' => NULL,
+            'security.authentication.manager.erase_credentials' => true,
+            'security.authentication.session_strategy.strategy' => 'migrate',
+            'security.access.always_authenticate_before_granting' => false,
+            'security.authentication.hide_user_not_found' => true,
             'console.command.ids' => [
 
             ],

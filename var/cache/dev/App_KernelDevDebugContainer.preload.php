@@ -6,7 +6,7 @@
 use Symfony\Component\DependencyInjection\Dumper\Preloader;
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/ContainerNVYE4hB/App_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerSudujiz/App_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Component\HttpKernel\EventListener\ResponseListener';
@@ -28,6 +28,12 @@ $classes[] = 'Symfony\Component\HttpKernel\EventListener\DebugHandlersListener';
 $classes[] = 'Symfony\Component\HttpKernel\Debug\FileLinkFormatter';
 $classes[] = 'Symfony\Component\Routing\RequestContext';
 $classes[] = 'Symfony\Component\HttpKernel\EventListener\RouterListener';
+$classes[] = 'Symfony\Component\Security\Core\Authentication\Token\Storage\UsageTrackingTokenStorage';
+$classes[] = 'Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage';
+$classes[] = 'Symfony\Component\Security\Http\Logout\LogoutUrlGenerator';
+$classes[] = 'Symfony\Component\Security\Http\RememberMe\ResponseListener';
+$classes[] = 'Symfony\Bundle\SecurityBundle\Debug\TraceableFirewallListener';
+$classes[] = 'Symfony\Bundle\SecurityBundle\Security\FirewallMap';
 $classes[] = 'Symfony\Component\HttpKernel\Log\Logger';
 $classes[] = 'Symfony\Bundle\FrameworkBundle\Routing\Router';
 $classes[] = 'Symfony\Component\Config\ResourceCheckerConfigCacheFactory';
