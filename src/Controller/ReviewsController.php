@@ -10,7 +10,7 @@ class ReviewsController extends AbstractController
     /**
      * @Route("/reviews/{page}", name="reviews_list")
      */
-    public function reviews_list(int $page)
+    public function reviews_list(int $page = 1)
     {
         return $this->render('Reviews/review_list.html.twig');
     }

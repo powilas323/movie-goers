@@ -10,7 +10,7 @@ class MovieController extends AbstractController
     /**
      * @Route("/movie/{page}", name="movie_list")
      */
-    public function movie_list(int $page)
+    public function movie_list(int $page = 1)
     {
         return $this->render('Movie/movie_list.html.twig');
     }
