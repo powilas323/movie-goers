@@ -37,15 +37,27 @@ class __TwigTemplate_ef47ca1fd0c620d3fe2011e774a12cb8ecd84697f5f4557ca7391d5bb36
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "navbar.html.twig"));
 
         // line 1
-        echo "<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm\">
-  <h5 class=\"my-0 mr-md-auto font-weight-normal\">Movie Goers</h5>
+        echo "<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm bg-dark\">
+  <h5 class=\"my-0 mr-md-auto font-weight-normal text-white\"><a class=\"p-2 text-white \" href=\"";
+        // line 2
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("index");
+        echo "\">Movie Gers</a></h5>
   <nav class=\"my-2 my-md-0 mr-md-3\">
-    <a class=\"p-2 text-dark\" href=\"#\">Features</a>
-    <a class=\"p-2 text-dark\" href=\"#\">Enterprise</a>
-    <a class=\"p-2 text-dark\" href=\"#\">Support</a>
-    <a class=\"p-2 text-dark\" href=\"#\">Pricing</a>
+    <a class=\"p-2 text-white \" href=\"";
+        // line 4
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("movie_list", ["page" => 1]);
+        echo "\">Filmu sarasas</a>
+    <a class=\"p-2 text-white\" href=\"";
+        // line 5
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("reviews_list", ["page" => 1]);
+        echo "\">Apzvalgu sarasas</a>
+    <a class=\"p-2 text-white\" href=\"\">Support</a>
+    <a class=\"p-2 text-white\" href=\"\">Pricing</a>
   </nav>
-  <a class=\"btn btn-outline-primary\" href=\"#\">Sign up</a>
+  <a class=\"btn btn-outline-primary\" href=\"";
+        // line 9
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
+        echo "\">Prisijungti</a>
 </div>
 ";
         
@@ -58,22 +70,27 @@ class __TwigTemplate_ef47ca1fd0c620d3fe2011e774a12cb8ecd84697f5f4557ca7391d5bb36
         return "navbar.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  40 => 1,);
+        return array (  59 => 9,  52 => 5,  48 => 4,  43 => 2,  40 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm\">
-  <h5 class=\"my-0 mr-md-auto font-weight-normal\">Movie Goers</h5>
+        return new Source("<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm bg-dark\">
+  <h5 class=\"my-0 mr-md-auto font-weight-normal text-white\"><a class=\"p-2 text-white \" href=\"{{ path('index') }}\">Movie Gers</a></h5>
   <nav class=\"my-2 my-md-0 mr-md-3\">
-    <a class=\"p-2 text-dark\" href=\"#\">Features</a>
-    <a class=\"p-2 text-dark\" href=\"#\">Enterprise</a>
-    <a class=\"p-2 text-dark\" href=\"#\">Support</a>
-    <a class=\"p-2 text-dark\" href=\"#\">Pricing</a>
+    <a class=\"p-2 text-white \" href=\"{{ path('movie_list', {page: 1}) }}\">Filmu sarasas</a>
+    <a class=\"p-2 text-white\" href=\"{{ path('reviews_list', {page: 1}) }}\">Apzvalgu sarasas</a>
+    <a class=\"p-2 text-white\" href=\"\">Support</a>
+    <a class=\"p-2 text-white\" href=\"\">Pricing</a>
   </nav>
-  <a class=\"btn btn-outline-primary\" href=\"#\">Sign up</a>
+  <a class=\"btn btn-outline-primary\" href=\"{{ path('login') }}\">Prisijungti</a>
 </div>
 ", "navbar.html.twig", "/var/www/html/IT_projektas/templates/navbar.html.twig");
     }

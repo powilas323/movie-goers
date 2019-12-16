@@ -65,7 +65,7 @@ class __TwigTemplate_ddc643408038474e8e37b530caa22c2f6a1ba000dbe2b1533f5bb910320
 <body>
 \t";
         // line 12
-        $this->loadTemplate("navbar.html", "base.html.twig", 12)->display($context);
+        $this->loadTemplate("navbar.html.twig", "base.html.twig", 12)->display($context);
         // line 13
         echo "\t<main role=\"main\">
 \t\t";
@@ -172,7 +172,7 @@ class __TwigTemplate_ddc643408038474e8e37b530caa22c2f6a1ba000dbe2b1533f5bb910320
 \t{% endblock %}
 </head>
 <body>
-\t{% include 'navbar.html' %}
+\t{% include 'navbar.html.twig' %}
 \t<main role=\"main\">
 \t\t{% block content %}
 \t\t{% endblock %}

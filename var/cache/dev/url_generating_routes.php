@@ -4,5 +4,15 @@
 
 return [
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], []],
+    'comments' => [[], ['_controller' => 'App\\Controller\\CommentsController::index'], [], [['text', '/comments']], [], []],
     'index' => [[], ['_controller' => 'App\\Controller\\IndexController::index'], [], [['text', '/index']], [], []],
+    'movie_list' => [['page'], ['_controller' => 'App\\Controller\\MovieController::movie_list'], [], [['variable', '/', '[^/]++', 'page', true], ['text', '/movie']], [], []],
+    'movie_show' => [['slug'], ['_controller' => 'App\\Controller\\MovieController::movie_show'], [], [['variable', '/', '[^/]++', 'slug', true], ['text', '/movie/c']], [], []],
+    'movie_wishlist' => [[], ['_controller' => 'App\\Controller\\MovieController::movie_wishlist'], [], [['text', '/movie/wishlist']], [], []],
+    'reviews_list' => [['page'], ['_controller' => 'App\\Controller\\ReviewsController::reviews_list'], [], [['variable', '/', '[^/]++', 'page', true], ['text', '/reviews']], [], []],
+    'review' => [['slug'], ['_controller' => 'App\\Controller\\ReviewsController::review'], [], [['variable', '/', '[^/]++', 'slug', true], ['text', '/review']], [], []],
+    'login' => [[], ['_controller' => 'App\\Controller\\UserManagementController::login'], [], [['text', '/login']], [], []],
+    'register' => [[], ['_controller' => 'App\\Controller\\UserManagementController::register'], [], [['text', '/register']], [], []],
+    'profile' => [[], ['_controller' => 'App\\Controller\\UserManagementController::profile'], [], [['text', '/profile']], [], []],
+    'logout' => [[], ['_controller' => 'App\\Controller\\UserManagementController::logout'], [], [['text', '/logout']], [], []],
 ];
